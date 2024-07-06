@@ -1,0 +1,17 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://${POSTGRES_HOST:localhost}:${POSTGRES_PORT:5432}/${POSTGRES_DB:quizz-question-db}?stringtype=unspecified
+    username: ${POSTGRES_DB_USER:postgres}
+    password: ${POSTGRES_DB_PASSWORD:root}
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      connection-timeout: 2000
+      maximum-pool-size: 5
+    jpa:
+      properties:
+        hibernate:
+          dialect: org.hibernate.dialect.PostgreSQLDialect
+          show-sql: false
+          ddl-auto: update
+      show-sql: false
+      generate-ddl: false
