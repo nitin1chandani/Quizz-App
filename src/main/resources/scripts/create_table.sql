@@ -2,7 +2,7 @@ CREATE SCHEMA IF NOT EXISTS question_schema;
 CREATE SCHEMA IF NOT EXISTS question_log_schema;
 
 CREATE TABLE IF NOT EXISTS "quizz-question-db".question_schema.questions (
-    id BIGINT PRIMARY KEY NOT NULL,
+    id BIGSERIAL PRIMARY KEY,
     category VARCHAR(45) NOT NULL,
     difficulty_lvl VARCHAR(45) NOT NULL,
     question_ttl VARCHAR(1500) NOT NULL,
