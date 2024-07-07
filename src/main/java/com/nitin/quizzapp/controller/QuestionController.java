@@ -1,5 +1,6 @@
 package com.nitin.quizzapp.controller;
 
+import com.nitin.quizzapp.model.DTO.AssignmentRequestDTO;
 import com.nitin.quizzapp.model.DTO.QuestionDetailsRequestDTO;
 import com.nitin.quizzapp.model.DTO.QuestionDetailsResponseDTO;
 import com.nitin.quizzapp.model.Question;
@@ -12,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/question")
+@RequestMapping(value = "api/v1/question")
 public class QuestionController {
 
     @Autowired
@@ -37,5 +38,14 @@ public class QuestionController {
     public ResponseEntity<Question> addQuestion(@RequestBody QuestionDetailsRequestDTO questionDetailsRequestDTO){
         Question question = questionService.addQuestion(questionDetailsRequestDTO);
         return new ResponseEntity<>(question, HttpStatus.OK);
+    }
+
+    @PostMapping(value = "/assignment")
+    public ResponseEntity<List<QuestionDetailsResponseDTO>> getAssignmentForParticularLanguage(@RequestBody AssignmentRequestDTO assignmentRequestDTO){
+        List<QuestionDetailsResponseDTO> questions = questionService.getQuestionsForAssignment(assignmentRequestDTO);
+        if(questions.size()==0){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(questions, HttpStatus.OK);
     }
 }

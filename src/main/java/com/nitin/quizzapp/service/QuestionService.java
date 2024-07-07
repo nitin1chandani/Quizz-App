@@ -1,5 +1,6 @@
 package com.nitin.quizzapp.service;
 
+import com.nitin.quizzapp.model.DTO.AssignmentRequestDTO;
 import com.nitin.quizzapp.model.DTO.QuestionDetailsRequestDTO;
 import com.nitin.quizzapp.model.DTO.QuestionDetailsResponseDTO;
 import com.nitin.quizzapp.model.Question;
@@ -53,6 +54,19 @@ public class QuestionService {
         }catch (Exception e){
             e.printStackTrace();
             throw new RuntimeException("Failed to Save Question");
+        }
+    }
+
+    public List<QuestionDetailsResponseDTO> getQuestionsForAssignment(AssignmentRequestDTO assignmentRequestDTO){
+        String category = assignmentRequestDTO.getCategory();
+        String difficultyLevel = assignmentRequestDTO.getDifficultyLevel();
+        try{
+            List<Question> questions = questionRepo.findQuestionByCategoryAndDifficultyLevel(category, difficultyLevel);
+            List<QuestionDetailsResponseDTO> result = createListOfQuestions(questions);
+            return result;
+        }catch (Exception e){
+            e.printStackTrace();
+            throw new RuntimeException("Failed to do find operation in database");
         }
     }
 
