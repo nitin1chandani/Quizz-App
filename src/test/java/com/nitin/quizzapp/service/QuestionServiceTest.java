@@ -63,44 +63,35 @@ public class QuestionServiceTest {
         assertEquals(result.getCategory(), "coding");
     }
 
+    @Test
+    public void shouldAddQuestionInDatabase(){
 
-    // TODO
-//    @Test
-//    public void shouldAddQuestionInDatabase(){
-//        // Sample data for the question
-//        Question question = Question.builder()
-//                .id(1L)
-//                .category("coding")
-//                .difficultyLevel("medium")
-//                .questionTitle("What is an example of a bubble sort algorithm?")
-//                .rightAnswer("Comparing adjacent elements and swapping them if they are in the wrong order.")
-//                .option1("Iteratively searching for the largest element and placing it in its correct position.")
-//                .option2("Recursively dividing the array into halves until only one element remains.")
-//                .option3("Using a stack to reverse the order of elements in an array.")
-//                .option4("Sorting elements by comparing them with a pivot and recursively sorting the subarrays.")
-//                .build();
-//
-//        // Mock behavior of repository save method
-//        when(questionRepo.save(question)).thenReturn(question);
-//
-//        // Create DTO object for service method
-//        QuestionDetailsRequestDTO questionDetailsRequestDTO = QuestionDetailsRequestDTO.builder()
-//                .category("coding")
-//                .difficultyLevel("medium")
-//                .questionTitle("What is an example of a bubble sort algorithm?")
-//                .rightAnswer("Comparing adjacent elements and swapping them if they are in the wrong order.")
-//                .option1("Iteratively searching for the largest element and placing it in its correct position.")
-//                .option2("Recursively dividing the array into halves until only one element remains.")
-//                .option3("Using a stack to reverse the order of elements in an array.")
-//                .option4("Sorting elements by comparing them with a pivot and recursively sorting the subarrays.")
-//                .build();
-//
-//        // Call the service method to add the question
-//        Question savedQuestion = questionService.addQuestion(questionDetailsRequestDTO);
-//
-//        // Assert that the returned question matches the expected question title
-//        assertEquals(question.getCategory(), savedQuestion.getCategory());
-//    }
+        Question question = Question.builder()
+                .category("coding")
+                .difficultyLevel("medium")
+                .questionTitle("What is an example of a bubble sort algorithm?")
+                .rightAnswer("Comparing adjacent elements and swapping them if they are in the wrong order.")
+                .option1("Iteratively searching for the largest element and placing it in its correct position.")
+                .option2("Recursively dividing the array into halves until only one element remains.")
+                .option3("Using a stack to reverse the order of elements in an array.")
+                .option4("Sorting elements by comparing them with a pivot and recursively sorting the subarrays.")
+                .build();
+
+
+        when(questionRepo.save(question)).thenReturn(question);
+        QuestionDetailsRequestDTO questionDetailsRequestDTO = QuestionDetailsRequestDTO.builder()
+                .category("coding")
+                .difficultyLevel("medium")
+                .questionTitle("What is an example of a bubble sort algorithm?")
+                .rightAnswer("Comparing adjacent elements and swapping them if they are in the wrong order.")
+                .option1("Iteratively searching for the largest element and placing it in its correct position.")
+                .option2("Recursively dividing the array into halves until only one element remains.")
+                .option3("Using a stack to reverse the order of elements in an array.")
+                .option4("Sorting elements by comparing them with a pivot and recursively sorting the subarrays.")
+                .build();
+        Question savedQuestion = questionService.addQuestion(questionDetailsRequestDTO);
+        assertEquals(question.getCategory(), savedQuestion.getCategory());
+    }
 
 
 
